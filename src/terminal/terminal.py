@@ -36,8 +36,10 @@ class MunixCMD:
             print(os.system(f"python {breakDown[1]}"))
         elif breakDown[0] in "compile":
             print(os.system(f"gcc {breakDown[1]} -o {breakDown[2]}\n"))
+        elif breakDown[0] in "clone":
+            print(os.system(f"gh repo clone {breakDown[1]}\n"))
         elif breakDown[0] in "help" or breakDown[0] in "-h":
-            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py *OPTIONAL] [NAME]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\n")
+            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py *OPTIONAL] [NAME]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\nclone\tGitHub Repo Cloner\tclone [REPO]\n")
         else:
             print("CMD ERROR (1) :: Command Does Not Exist\n")
 
