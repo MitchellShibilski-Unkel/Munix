@@ -1,2 +1,5 @@
 # Munix
-New Linux Kernel
+New Linux Kernel (*optional) Additions 
+
+## Features
+- New, easier to use terminal
