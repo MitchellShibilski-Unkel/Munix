@@ -1,5 +1,6 @@
 import os
 from src.compressor.compressor import MunixCompressor
+from src.computer_tests.PyPC.ScoringSysCMD import run
 
 
 class MunixCMD:
@@ -43,8 +44,10 @@ class MunixCMD:
         elif breakDown[0] in "decompress":
             MunixCompressor(breakDown[1:]).decompress()
             print(f"{breakDown[1:]} Decompressed\n")
+        elif breakDown[0] in "test-performance":
+            print(run())
         elif breakDown[0] in "help" or breakDown[0] in "-h":
-            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py *OPTIONAL] [NAME]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\ncompress\tCompressor\tcompress [FILE]\ndecompress\tDecompressor\tdecompress [FILE]\n")
+            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py *OPTIONAL] [NAME]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\ncompress\tCompressor\tcompress [FILE]\ndecompress\tDecompressor\tdecompress [FILE]\ntest-performance\tPerformance Test\ttest-performance")
         else:
             print("CMD ERROR (1) :: Command Does Not Exist\n")
 
