@@ -1,4 +1,5 @@
 import os
+from src.compressor.compressor import MunixCompressor
 
 
 class MunixCMD:
@@ -36,10 +37,14 @@ class MunixCMD:
             print(os.system(f"python {breakDown[1]}"))
         elif breakDown[0] in "compile":
             print(os.system(f"gcc {breakDown[1]} -o {breakDown[2]}\n"))
-        elif breakDown[0] in "clone":
-            print(os.system(f"gh repo clone {breakDown[1]}\n"))
+        elif breakDown[0] in "compress":
+            MunixCompressor(breakDown[1:]).compress()
+            print(f"{breakDown[1:]} Compressed\n")
+        elif breakDown[0] in "decompress":
+            MunixCompressor(breakDown[1:]).decompress()
+            print(f"{breakDown[1:]} Decompressed\n")
         elif breakDown[0] in "help" or breakDown[0] in "-h":
-            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py *OPTIONAL] [NAME]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\nclone\tGitHub Repo Cloner\tclone [REPO]\n")
+            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py *OPTIONAL] [NAME]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\ncompress\tCompressor\tcompress [FILE]\ndecompress\tDecompressor\tdecompress [FILE]\n")
         else:
             print("CMD ERROR (1) :: Command Does Not Exist\n")
 
