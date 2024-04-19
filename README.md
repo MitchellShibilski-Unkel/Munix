@@ -1,5 +1,6 @@
 # Munix
-New Linux Kernel (*optional) Additions 
+The Munix Project
+v1.0
 
 ## Features
 - New, easier to use terminal
