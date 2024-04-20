@@ -57,7 +57,7 @@ class MunixCMD:
         elif breakDown[0] in "help" or breakDown[0] in "-h":
             print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py *OPTIONAL] [NAME]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\ncompress\tCompressor\tcompress [FILE]\ndecompress\tDecompressor\tdecompress [FILE]\n")
         else:
-            print("CMD ERROR (1) :: Command Does Not Exist\n")
+            os.system(f"{breakDown[0:]}")
 
     def __count__(self, x: list):
         count = 0
