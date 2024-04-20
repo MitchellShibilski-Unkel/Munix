@@ -43,6 +43,17 @@ class MunixCMD:
         elif breakDown[0] in "decompress":
             MunixCompressor(breakDown[1:]).decompress()
             print(f"{breakDown[1:]} Decompressed\n")
+        elif breakDown[0] in "user":
+            if breakDown[1] in "-a":
+                print(os.system(f"sudo useradd {breakDown[2]}\n"))
+            elif breakDown[1] in "-r":
+                print(os.system(f"userdel {breakDown[2]}\n"))
+            elif breakDown[1] in "-l":
+                print(os.system("awk -F: '{print $1}' /etc/passwd\n"))
+            elif breakDown[1] in "-f":
+                print(os.system(f"sudo passwd --expire {breakDown[2]}\n"))
+            else:
+                print("CMD ERROR :: User Command Does Not Exist\nCan Only Use [-r][-a][-l][-f]\n")
         elif breakDown[0] in "help" or breakDown[0] in "-h":
             print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py *OPTIONAL] [NAME]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\ncompress\tCompressor\tcompress [FILE]\ndecompress\tDecompressor\tdecompress [FILE]\n")
         else:
