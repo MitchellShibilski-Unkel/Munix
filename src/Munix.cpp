@@ -11,4 +11,8 @@ class Munix {
         void freeRAM(int* bytes) {
             Free(bytes);
         }
+
+        void allocRAM_toFile(const char filename, int bytes) {
+            GiveTo(filename, bytes);
+        }
 };
