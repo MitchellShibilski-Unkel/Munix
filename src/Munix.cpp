@@ -1,10 +1,14 @@
-#include "PyMunix.c"
-#include "window/window.h"
+#include "PyMunix.h"
+#include "RAM.h"
 
 
-class Munix() {
+class Munix {
     public:
         void runTerminal() {
             terminal();
         }
-}
+
+        void freeRAM(int* bytes) {
+            Free(bytes);
+        }
+};
