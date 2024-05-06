@@ -1,5 +1,6 @@
 #include "PyMunix.h"
 #include "RAM.h"
+#include <stlib.h>
 
 
 class Munix {
@@ -12,7 +13,14 @@ class Munix {
             Free(bytes);
         }
 
-        void allocRAM_toFile(const char filename, int bytes) {
-            GiveTo(filename, bytes);
+        const char open_r(const char filename) {
+            FILE = fopen(file, "r");
+            return FILE;
+        }
+
+        const char input(const char value) {
+            const char info;
+            fscan("%d", info);
+            return info;
         }
 };
