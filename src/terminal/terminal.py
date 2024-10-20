@@ -1,16 +1,20 @@
 import os
-from src.compressor.compressor import MunixCompressor
+import zlib
 
 
 class MunixCMD:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, compressionLevel = "High") -> None:
+        self.compressLevel = compressionLevel
 
     def getCMD(self):
         userIn = input("MUNIX >> ")
         return userIn
 
-    def run(self, cmd: str):
+    def run(self):
+        _in = input("MUNIX >> ")
+        self.CMD(_in)
+
+    def CMD(self, cmd: str):
         breakDown = cmd.split(" ")
         
         if breakDown[0] in "r":
@@ -27,21 +31,22 @@ class MunixCMD:
             print(os.system(f"sudo apt uninstall {breakDown[1:]}\n"))
         elif breakDown[0] in "f":
             print(os.system(f"locate -b {breakDown[1:]}\n"))
-        elif breakDown[0] in "get -py":
-            count = self.__count__(breakDown)
-            if count <= 2:
-                print(os.system(f"sudo apt install python3-pip\n"))
-            else:
-                print(os.system(f"pip install {breakDown[1]}\n"))
+        elif cmd == "get -py":
+            print(os.system("sudo apt install python3-pip\n"))
+        elif cmd == "get -rs":
+            print(os.system("curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh\n"))
+        elif cmd in "get -py [":
+                libs = cmd.split("[")[-1].strip("]")
+                print(os.system(f"pip install {libs}\n"))
         elif breakDown[0] in "py":
             print(os.system(f"python {breakDown[1]}"))
-        elif breakDown[0] in "compile":
+        elif breakDown[0] in "compile-c":
             print(os.system(f"gcc {breakDown[1]} -o {breakDown[2]}\n"))
         elif breakDown[0] in "compress":
-            MunixCompressor(breakDown[1:]).compress()
+            self.compress(breakDown[1:])
             print(f"{breakDown[1:]} Compressed\n")
         elif breakDown[0] in "decompress":
-            MunixCompressor(breakDown[1:]).decompress()
+            self.decompress(breakDown[1:])
             print(f"{breakDown[1:]} Decompressed\n")
         elif breakDown[0] in "user":
             if breakDown[1] in "-a":
@@ -55,9 +60,21 @@ class MunixCMD:
             else:
                 print("CMD ERROR :: User Command Does Not Exist\nCan Only Use [-r][-a][-l][-f]\n")
         elif breakDown[0] in "help" or breakDown[0] in "-h":
-            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py *OPTIONAL] [NAME]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\ncompress\tCompressor\tcompress [FILE]\ndecompress\tDecompressor\tdecompress [FILE]\n")
+            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py, -rs *OPTIONAL] | [LIBRARIES *OPTIONAL]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\ncompress\tCompressor\tcompress [FILE]\ndecompress\tDecompressor\tdecompress [FILE]\npy\tPython Runner\tpy [FILE]\n")
         else:
             os.system(f"{breakDown[0:]}")
+            
+    def compress(self, file):
+        match self.level:
+            case "Low":
+                zlib.compress(file, level=1)
+            case "Medium":
+                zlib.compress(file, level=4)
+            case "High":
+                zlib.compress(file, level=9)
+
+    def decompress(self, file):
+        zlib.decompress(file)
 
     def __count__(self, x: list):
         count = 0
@@ -65,3 +82,4 @@ class MunixCMD:
             count += 1
 
         return count
+    
