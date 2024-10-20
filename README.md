@@ -1,11 +1,13 @@
 # Munix
 The Munix Project <br />
-v2.3
+v2.4
 
 ## Features
 - Terminal
 - Compressor
 - RAM Controller
+- File System
+- User Input
 
 ## Terminal Commands
 `r [FILE]` Read <br />
