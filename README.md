@@ -1,6 +1,6 @@
 # Munix
 The Munix Project <br />
-v2.4
+v3.0
 
 ## Features
 - Terminal
