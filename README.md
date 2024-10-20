@@ -5,9 +5,7 @@ v3.0
 ## Features
 - Terminal
 - Compressor
-- RAM Controller
-- File System
-- User Input
+- Decompressor
 
 ## Terminal Commands
 `r [FILE]` Read <br />
