@@ -65,7 +65,9 @@ class MunixCMD:
             elif breakDown[1] in "-cp":
                 os.system(f"git add {breakDown[2:]}\n")
                 print(">>> Git :: Added!")
-                print(os.system(f"git commit -m 'Munix Commit'\n"))
+                os.system(f"git commit -m 'Munix Commit'\n")
+                print(">>> Git :: Committed!")
+                print(os.system(f"git push'\n"))
             elif breakDown[1] in "-p":
                 print(os.system(f"git pull\n"))
             else:
