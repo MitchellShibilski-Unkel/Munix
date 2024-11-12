@@ -59,8 +59,19 @@ class MunixCMD:
                 print(os.system(f"sudo passwd --expire {breakDown[2]}\n"))
             else:
                 print("CMD ERROR :: User Command Does Not Exist\nCan Only Use [-r][-a][-l][-f]\n")
+        elif breakDown[0] == "repo":
+            if breakDown[1] in "-c":
+                print(os.system(f"git clone {breakDown[2]}\n"))
+            elif breakDown[1] in "-cp":
+                os.system(f"git add {breakDown[2:]}\n")
+                print(">>> Git :: Added!")
+                print(os.system(f"git commit -m 'Munix Commit'\n"))
+            elif breakDown[1] in "-p":
+                print(os.system(f"git pull\n"))
+            else:
+                print("CMD ERROR :: Repo Command Does Not Exist\nCan Only Use [-c][-cp][-p]\n")
         elif breakDown[0] in "help" or breakDown[0] in "-h":
-            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py, -rs *OPTIONAL] | [LIBRARIES *OPTIONAL]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\ncompress\tCompressor\tcompress [FILE]\ndecompress\tDecompressor\tdecompress [FILE]\npy\tPython Runner\tpy [FILE]\n")
+            print("Command Name\tFunction\tCommand\nr\tRead\tr [FILE]\nw\tWrite\tw [FILE]\nf\tFind\tf [FILE]\ncompile\tGCC Compiler\tcompile [FILE] [EXE NAME]\nprint\tEcho\tprint [MESSAGE]\nget\tInstaller\tget [-py, -rs *OPTIONAL] | [LIBRARIES *OPTIONAL]\nupdate\tUpdater\tupdate [NAME]\nremove\tUninstaller\tremove [NAME]\ncompress\tCompressor\tcompress [FILE]\ndecompress\tDecompressor\tdecompress [FILE]\npy\tPython Runner\tpy [FILE]\nrepo [-c][-cp][-p] [GIT REPO URL *OPTIONAL]\tGit\n")
         else:
             os.system(f"{breakDown[0:]}")
             
